@@ -1,0 +1,142 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "GameObject",
+"class": "Block",
+"language": "GDScript",
+"path": "res://scripts/blocks/Block.gd"
+}, {
+"base": "Block",
+"class": "CaveBrick",
+"language": "GDScript",
+"path": "res://scripts/blocks/cave/CaveBrick.gd"
+}, {
+"base": "Floor",
+"class": "CaveBrickFloor",
+"language": "GDScript",
+"path": "res://scripts/floors/cave/CaveBrickFloor.gd"
+}, {
+"base": "Room",
+"class": "CaveColdRoom",
+"language": "GDScript",
+"path": "res://scripts/rooms/cave/CaveColdRoom.gd"
+}, {
+"base": "Level",
+"class": "CaveLevel",
+"language": "GDScript",
+"path": "res://scripts/levels/cave/CaveLevel.gd"
+}, {
+"base": "Room",
+"class": "CaveSpawnRoom",
+"language": "GDScript",
+"path": "res://scripts/rooms/cave/CaveSpawnRoom.gd"
+}, {
+"base": "Camera2D",
+"class": "CoreCamera",
+"language": "GDScript",
+"path": "res://scripts/core/CoreCamera.gd"
+}, {
+"base": "GameObject",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://scripts/core/Entity.gd"
+}, {
+"base": "GameObject",
+"class": "Floor",
+"language": "GDScript",
+"path": "res://scripts/floors/Floor.gd"
+}, {
+"base": "Node2D",
+"class": "Game",
+"language": "GDScript",
+"path": "res://scripts/Game.gd"
+}, {
+"base": "Area2D",
+"class": "GameObject",
+"language": "GDScript",
+"path": "res://scripts/core/GameObject.gd"
+}, {
+"base": "Entity",
+"class": "Hero",
+"language": "GDScript",
+"path": "res://scripts/heroes/Hero.gd"
+}, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://scripts/levels/Level.gd"
+}, {
+"base": "Level",
+"class": "Room",
+"language": "GDScript",
+"path": "res://scripts/rooms/Room.gd"
+}, {
+"base": "Hero",
+"class": "Warrior",
+"language": "GDScript",
+"path": "res://scripts/heroes/warrior/Warrior.gd"
+} ]
+_global_script_class_icons={
+"Block": "",
+"CaveBrick": "",
+"CaveBrickFloor": "",
+"CaveColdRoom": "",
+"CaveLevel": "",
+"CaveSpawnRoom": "",
+"CoreCamera": "",
+"Entity": "",
+"Floor": "",
+"Game": "",
+"GameObject": "",
+"Hero": "",
+"Level": "",
+"Room": "",
+"Warrior": ""
+}
+
+[application]
+
+config/name="LostInPortals2"
+run/main_scene="res://scenes/Game.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://scripts/Globals.gd"
+Levels="*res://scripts/Levels.gd"
+Rooms="*res://scripts/Rooms.gd"
+Utils="*res://scripts/Utils.gd"
+Heroes="*res://scripts/Heroes.gd"
+Floors="*res://scripts/Floors.gd"
+Blocks="*res://scripts/Blocks.gd"
+
+[input]
+
+up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}

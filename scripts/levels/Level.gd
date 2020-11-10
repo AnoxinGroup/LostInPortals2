@@ -4,7 +4,7 @@ class_name Level
 
 
 func spawn(cell_x, cell_y, game_object):
-	game_object.set_current_cells(
+	game_object.set_position_cells(
 		cell_x, cell_y)
 	add_child(game_object)
 

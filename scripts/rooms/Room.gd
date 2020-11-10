@@ -7,6 +7,11 @@ var exit_point = Vector2(1, 3)
 var entry_point = Vector2(1, 0)
 
 
+# ============== #
+# INITIALIZATION #
+# ============== #
+
+
 func _ready():
 	_build()
 
@@ -15,24 +20,11 @@ func _build():
 	pass
 
 
-# CALCULATE HORIZONTAL POSITION
-#
-# + - - - +
-# .       .
-# .       .
-# + - o - + <- + connect them here.
-# + - I - + <- + o - exit point.
-# .       .    + I - entry point.
-# .       .
-# + - - - +
-#
-# That's what calculating position of the
-# room according to positions of the exit point
-# of the base room and entry point of this one.
-# There was also vertical calculation before,
-# but it was cut off, because rooms spawns
-# only from top to the bottom, no left to
-# right connection avaible.
+# =============== #
+# HELPFUL METHODS #
+# =============== #
+
+
 func _calc_position_horizontal(exit, entry):
 	var exit_x = exit.x
 	var entry_x = entry.x
@@ -62,9 +54,23 @@ func connect_room(another_room):
 	return another_room
 
 
-func rand_points(points: Array, classes: Array):
-	randomize()
+func rect_random(vec_f, vec_s, classes: Array):
+	"""
+	
+	Builds a rectangle with certain classes,
+	by the given coordinates.
+	
+	"""
+	for x in range(vec_f.x, vec_s.x):
+		for y in range(vec_f.y, vec_s.y):
+			var _selected_class = Utils.choice(classes)
+			
+			if _selected_class != null:
+				spawn(
+					x, y, _selected_class.instance())
 
+
+func rand_points(points: Array, classes: Array):
 	var _selected_class
 	
 	for point in points:
@@ -76,3 +82,8 @@ func rand_points(points: Array, classes: Array):
 func rand_npoints(points: Array, classes: Array):
 	classes.append(null)
 	rand_points(points, classes)
+
+
+# ====== #
+# EVENTS #
+# ====== #
