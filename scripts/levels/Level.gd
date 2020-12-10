@@ -2,19 +2,30 @@ tool
 extends Node2D
 class_name Level
 
+var hero: Hero
 
-func spawn(cell_x, cell_y, game_object):
-	game_object.set_position_cells(
-		cell_x, cell_y)
-	add_child(game_object)
+onready var objects: YSort = get_node("objects")
 
 
-func spawnv(cell_vec, game_object):
-	game_object.set_position_cells(
-		cell_vec.x, cell_vec.y)
-	add_child(game_object)
+func spawn(object: Node2D, pos: Vector2):
+	if objects:
+		# Update object's position
+		object.set_position(
+			pos)
+		objects.add_child(object)
 
 
-func connect_rooms(base_room, another_room):
-	add_child(
-		base_room.connect_room(another_room))
+func destroy(object: Node2D):
+	if objects:
+		objects.remove_child(object)
+
+
+func spawn_hero(new: Hero, pos: Vector2):
+	spawn(new, pos)
+
+	if new.is_current_hero:
+		# when the current player spawned
+		# update its view state.
+		new.set_camera_follow(
+			true)
+		hero = new

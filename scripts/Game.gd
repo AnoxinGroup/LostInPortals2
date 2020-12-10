@@ -1,76 +1,102 @@
-tool
 extends Node2D
 class_name Game
 
-signal level_set(new_level)
-signal depth_changed(new_value)
-signal fail_last_level
+signal scene_changed(previos, current)
 
-onready var map_manager = $map_manager
+var world: GameWorld = Scenes.GAME_WORLD.instance()
+"""
 
-var current_level
+Game World reference.
 
-var depth: int = 0 setget set_depth
-var passed_levels: Array = []
+"""
+
+var selected_hero: Hero setget select_hero
+"""
+
+Hero, that user selected in the menu scene
+before.
+
+.. note::
+	`selected_hero` and `hero` are not the same.
+
+"""
+
+var depth: int setget ,get_depth
+
+var level: Level setget set_level, get_level
+"""
+
+Current level reference.
+
+"""
+
+var hero: Hero setget set_hero, get_hero
+"""
+
+Current hero reference.
+
+"""
+
+var scene: Node2D \
+	setget set_scene
+"""
+
+Current shown scene.
+
+"""
+
+onready var scenes: Node2D = get_node("scenes")
+"""
+
+Scene controller.
+
+"""
 
 
 func _ready():
-	randomize()
-	next_level()
+	selected_hero = Entities.WARRIOR.instance()
+	set_scene(world)
 
 
-func set_depth(new_value):
-	depth = new_value
-	emit_signal("depth_changed", new_value)
+func get_depth() -> int:
+	return self.world.depth
 
 
-func increase_depth():
-	depth += 1
+func set_level(new: Level):
+	self.world.level = new
 
 
-func decrease_depth():
-	depth -= 1
+func get_level() -> Level:
+	return self.world.level
 
 
-func set_current_level(new_level):
-	current_level = new_level
-	map_manager.add_child(new_level)
-	emit_signal("level_set", new_level)
+func set_hero(new: Hero):
+	self.level.hero = new
 
 
-func reset_level(new_level):
-	if current_level != null:
-		map_manager.remove_child(current_level)
-	set_current_level(new_level)
+func get_hero() -> Hero:
+	return self.level.hero
 
 
-func generate_level():
-	match depth:
-		1, 2, 3: return Levels.CAVE.instance()
-		4: return 2
+func select_hero(new):
+	"""
+
+	When the new hero selected update its control
+	and view state.
+
+	"""
+	new.set_current_state(true)
+	selected_hero = new
 
 
-func next_level():
-	#
-	# Go deeper, level by level
-	increase_depth()
-	
-	var certain_level
-	
-	if depth > passed_levels.size():
-		certain_level = generate_level()
-		passed_levels.append(certain_level)
-	else:
-		certain_level = passed_levels[depth - 1]
-	
-	reset_level(certain_level)
+func set_scene(new: Node2D):
+	if scene:
+		scenes.remove_child(scene)
+	scenes.add_child(new)
 
+	emit_signal(
+		"scene_changed",
+		scene,
+		new)
 
-func last_level():
-	#
-	# Go up
-	if depth > 1:
-		decrease_depth()
-		reset_level(passed_levels[depth - 1])
-	else:
-		emit_signal("fail_last_level")
+	scene = new

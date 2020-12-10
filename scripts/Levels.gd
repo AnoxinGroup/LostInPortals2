@@ -1,3 +1,3 @@
 extends Node
 
-const CAVE = preload("res://scenes/levels/cave/CaveLevel.tscn")
+const CAVE_GARDEN = preload("res://scenes/levels/cave/CaveGarden.tscn")

@@ -9,96 +9,90 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "GameObject",
-"class": "Block",
-"language": "GDScript",
-"path": "res://scripts/blocks/Block.gd"
-}, {
-"base": "Block",
-"class": "CaveBrick",
-"language": "GDScript",
-"path": "res://scripts/blocks/cave/CaveBrick.gd"
-}, {
-"base": "Floor",
-"class": "CaveBrickFloor",
-"language": "GDScript",
-"path": "res://scripts/floors/cave/CaveBrickFloor.gd"
-}, {
-"base": "Room",
-"class": "CaveColdRoom",
-"language": "GDScript",
-"path": "res://scripts/rooms/cave/CaveColdRoom.gd"
-}, {
 "base": "Level",
 "class": "CaveLevel",
 "language": "GDScript",
 "path": "res://scripts/levels/cave/CaveLevel.gd"
 }, {
-"base": "Room",
-"class": "CaveSpawnRoom",
-"language": "GDScript",
-"path": "res://scripts/rooms/cave/CaveSpawnRoom.gd"
-}, {
-"base": "Camera2D",
-"class": "CoreCamera",
-"language": "GDScript",
-"path": "res://scripts/core/CoreCamera.gd"
-}, {
-"base": "GameObject",
+"base": "KinematicBody2D",
 "class": "Entity",
 "language": "GDScript",
-"path": "res://scripts/core/Entity.gd"
+"path": "res://scripts/entities/Entity.gd"
 }, {
-"base": "GameObject",
-"class": "Floor",
+"base": "Rule",
+"class": "Entry",
 "language": "GDScript",
-"path": "res://scripts/floors/Floor.gd"
+"path": "res://scripts/rules/Entry.gd"
+}, {
+"base": "Rule",
+"class": "Exit",
+"language": "GDScript",
+"path": "res://scripts/rules/Exit.gd"
+}, {
+"base": "Plant",
+"class": "Fern",
+"language": "GDScript",
+"path": "res://scripts/plants/Fern.gd"
 }, {
 "base": "Node2D",
 "class": "Game",
 "language": "GDScript",
 "path": "res://scripts/Game.gd"
 }, {
-"base": "Area2D",
-"class": "GameObject",
+"base": "Node2D",
+"class": "GameWorld",
 "language": "GDScript",
-"path": "res://scripts/core/GameObject.gd"
+"path": "res://scripts/World.gd"
 }, {
 "base": "Entity",
 "class": "Hero",
 "language": "GDScript",
-"path": "res://scripts/heroes/Hero.gd"
+"path": "res://scripts/entities/Heroes/Hero.gd"
+}, {
+"base": "Plant",
+"class": "Huperzia",
+"language": "GDScript",
+"path": "res://scripts/plants/Huperzia.gd"
 }, {
 "base": "Node2D",
 "class": "Level",
 "language": "GDScript",
 "path": "res://scripts/levels/Level.gd"
 }, {
-"base": "Level",
-"class": "Room",
+"base": "Node2D",
+"class": "Plant",
 "language": "GDScript",
-"path": "res://scripts/rooms/Room.gd"
+"path": "res://scripts/plants/Plant.gd"
+}, {
+"base": "Area2D",
+"class": "Rule",
+"language": "GDScript",
+"path": "res://scripts/rules/Rule.gd"
+}, {
+"base": "Node2D",
+"class": "Spawner",
+"language": "GDScript",
+"path": "res://scripts/rules/Spawner.gd"
 }, {
 "base": "Hero",
 "class": "Warrior",
 "language": "GDScript",
-"path": "res://scripts/heroes/warrior/Warrior.gd"
+"path": "res://scripts/entities/Heroes/Warrior.gd"
 } ]
 _global_script_class_icons={
-"Block": "",
-"CaveBrick": "",
-"CaveBrickFloor": "",
-"CaveColdRoom": "",
 "CaveLevel": "",
-"CaveSpawnRoom": "",
-"CoreCamera": "",
 "Entity": "",
-"Floor": "",
+"Entry": "",
+"Exit": "",
+"Fern": "",
 "Game": "",
-"GameObject": "",
+"GameWorld": "",
 "Hero": "",
+"Huperzia": "",
 "Level": "",
-"Room": "",
+"Plant": "",
+"Rule": "",
+"Spawner": "",
 "Warrior": ""
 }
 
@@ -110,13 +104,10 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Globals="*res://scripts/Globals.gd"
 Levels="*res://scripts/Levels.gd"
-Rooms="*res://scripts/Rooms.gd"
 Utils="*res://scripts/Utils.gd"
-Heroes="*res://scripts/Heroes.gd"
-Floors="*res://scripts/Floors.gd"
-Blocks="*res://scripts/Blocks.gd"
+Entities="*res://scripts/Entities.gd"
+Scenes="*res://scripts/Scenes.gd"
 
 [input]
 
@@ -140,3 +131,7 @@ right={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[rendering]
+
+environment/default_clear_color=Color( 0.168627, 0.207843, 0.266667, 1 )

@@ -9,3 +9,11 @@ addons/
 .mono/
 data_*/
 
+# Game-specific ignores
+
+# Still ignoring plants as it's not so
+# neccessary in game now (But plants assets
+# can be found at the assets directory).
+scripts/plants
+scenes/plants
+

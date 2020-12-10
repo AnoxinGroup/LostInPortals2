@@ -3,5 +3,5 @@ extends Node
 
 func choice(array: Array):
 	randomize()
-
-	return array[randi() % array.size() - 1]
+	if array.size() > 0:
+		return array[(randi() % array.size()) - 1]
